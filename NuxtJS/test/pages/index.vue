@@ -14,6 +14,12 @@
         <ArtPrint :artInfo="artWork" />
       </v-col>
     </v-row>
+    <v-data-table
+      :headers="headers"
+      :items="serverResponse.data"
+      :items-per-page="5"
+      class="elevation-1 mt-4"
+    ></v-data-table>
   </v-container>
 </template>
 <script>
@@ -24,6 +30,22 @@ export default {
     )
     return {
       serverResponse,
+    }
+  },
+  data() {
+    return {
+      headers: [
+        {
+          text: 'artworks',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'artist', value: 'artist_display' },
+        { text: 'title', value: 'title' },
+        { text: 'origin', value: 'place_of_origin' },
+
+      ],
     }
   },
 }
